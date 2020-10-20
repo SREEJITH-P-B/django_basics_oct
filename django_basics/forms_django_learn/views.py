@@ -29,3 +29,13 @@ def show(request):
             "results":query_results,
         }
         return render(request,'forms_django_learn/show.html',context)
+
+def display_row(request):
+        if request.method=='POST':
+            query_results = detailss.objects.filter(stream=request.POST.get('stream'))
+            context ={
+                "results":query_results
+            }
+            return render(request,'forms_django_learn/row.html',context)
+        else:
+            return render(request,'forms_django_learn/row.html')

@@ -1,0 +1,27 @@
+<form action="{% url 'display_row' %}" method="post">
+{% csrf_token %}
+<label for="stream">Stream:</label>
+<select id="stream" name="stream">
+<option value="cse">CSE</option>
+<option value="it">IT</option>
+<option value="other">Other</option></select>
+<input type="submit" value="show"/>
+</form>
+{%block content%}
+    {%if results  %}
+        <table>
+        {% for i in results %}
+            <tr> 
+            <td>{{ i.fname }}</td>
+            <td>{{ i.lname }}</td>
+            <td>{{ i.stream}}</td>
+            </tr>
+       
+        {% endfor %}
+         </table>
+           
+    {% else %}
+         <h1></h1>  
+        
+    {% endif %}
+ {% endblock %}

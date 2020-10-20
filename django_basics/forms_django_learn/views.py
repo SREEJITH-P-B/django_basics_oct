@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import detailss
 
 def home(request):
@@ -9,6 +9,7 @@ def details(request):
         d.fname=request.POST.get('fname')
         d.lname=request.POST.get('lname')
         d.stream=request.POST.get('stream')
+        d.completed=0
         d.save()
         context = {
         "fname":d.fname,
@@ -39,3 +40,13 @@ def display_row(request):
             return render(request,'forms_django_learn/row.html',context)
         else:
             return render(request,'forms_django_learn/row.html')
+
+def completed_item(request,ids):
+    results=detailss.objects.get(pk=ids)
+    if(results.completed==True):
+            results.completed=False;
+            results.save()
+    else:
+            results.completed=True;
+            results.save()
+    return redirect('show')

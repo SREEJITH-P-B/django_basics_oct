@@ -1,3 +1,7 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<body>
 <h1>Details</h1><br>
 <table>
     <tr>
@@ -5,11 +9,25 @@
         <th>Last_Name</th>
         <th>Stream</th>
     </tr>
+    
     {% for item in results %}
-    <tr> 
+    <tr> <a href="#">
+        <td><input type="checkbox" unchecked ></td>
+        <td><a href="{% url 'completed' item.id %}">{{item.id}}</a></td>
         <td>{{ item.fname }}</td>
         <td>{{ item.lname }}</td>
-        <td>{{ item.stream}}</td>
+        <td>{{ item.stream}}</td></a>
+       
     </tr>
+    
     {% endfor %}
 </table>
+<script>
+
+</script>
+
+
+
+</body>
+</html>
+

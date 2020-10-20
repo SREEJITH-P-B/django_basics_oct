@@ -11,9 +11,13 @@
     </tr>
     
     {% for item in results %}
-    <tr> <a href="#">
-        <td><input type="checkbox" unchecked ></td>
-        <td><a href="{% url 'completed' item.id %}">{{item.id}}</a></td>
+    <tr  onclick="window.location='{% url 'completed' item.id %}';">
+        {% if item.completed  %} 
+            <td><input type="checkbox" checked ></td>
+        {% else %}
+             <td><input type="checkbox" unchecked ></td>
+        {% endif %}
+        <td>{{item.id}}</td>
         <td>{{ item.fname }}</td>
         <td>{{ item.lname }}</td>
         <td>{{ item.stream}}</td></a>
@@ -22,9 +26,7 @@
     
     {% endfor %}
 </table>
-<script>
 
-</script>
 
 
 

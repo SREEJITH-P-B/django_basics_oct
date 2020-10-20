@@ -23,3 +23,9 @@ def details(request):
         "stream": "",
         }
         return render(request,'forms_django_learn/details.html',context)
+def show(request):
+        query_results = detailss.objects.all()
+        context ={
+            "results":query_results,
+        }
+        return render(request,'forms_django_learn/show.html',context)

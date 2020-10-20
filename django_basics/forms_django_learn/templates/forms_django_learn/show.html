@@ -1,0 +1,15 @@
+<h1>Details</h1><br>
+<table>
+    <tr>
+        <th>First_Name</th>
+        <th>Last_Name</th>
+        <th>Stream</th>
+    </tr>
+    {% for item in results %}
+    <tr> 
+        <td>{{ item.fname }}</td>
+        <td>{{ item.lname }}</td>
+        <td>{{ item.stream}}</td>
+    </tr>
+    {% endfor %}
+</table>

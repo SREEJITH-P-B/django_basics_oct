@@ -3,6 +3,14 @@ from .models import detailss
 
 def home(request):
     return render(request,'forms_django_learn/index.html')
+
+def show(request):
+        query_results = detailss.objects.all()
+        context ={
+            "results":query_results,
+        }
+        return render(request,'forms_django_learn/show.html',context)
+
 def details(request):
     if request.method=='POST':
         d=detailss()
@@ -11,25 +19,10 @@ def details(request):
         d.stream=request.POST.get('stream')
         d.completed=0
         d.save()
-        context = {
-        "fname":d.fname,
-        "lname": d.lname,
-        "stream": d.stream,
-        }
-        return render(request,'forms_django_learn/details.html',context)
-    else:
-        context = {
-        "fname":"",
-        "lname": "",
-        "stream": "",
-        }
-        return render(request,'forms_django_learn/details.html',context)
-def show(request):
-        query_results = detailss.objects.all()
-        context ={
-            "results":query_results,
-        }
-        return render(request,'forms_django_learn/show.html',context)
+        return redirect('show')
+def delete_item(request):
+    query_results = detailss.objects.filter(completed=True).delete()
+    return redirect('show')
 
 def display_row(request):
         if request.method=='POST':
